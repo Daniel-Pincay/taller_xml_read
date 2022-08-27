@@ -7,6 +7,7 @@ import 'package:read_three_xml/models/option_model.dart';
 import 'package:read_three_xml/models/plant_model.dart';
 import 'package:read_three_xml/models/recipe_model.dart';
 import 'package:read_three_xml/widgets/food_widget.dart';
+import 'package:read_three_xml/widgets/plant_widget.dart';
 import 'package:read_three_xml/widgets/receipt_widget.dart';
 
 void main() {
@@ -45,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
     const OptionModel(name: 'planta', option: 1),
     const OptionModel(name: 'receta', option: 2),
   ];
-  int currentOptionSelected=2;
+  int currentOptionSelected=1;
    List<dynamic>response=[];
    List<FoodModel>responseFood=[];
    List<RecipeModel>responseRecipe=[];
@@ -57,17 +58,20 @@ class _MyHomePageState extends State<MyHomePage> {
     try{
       if(currentOptionSelected==1){
          responsePlants=await networkApi.getListPlants(context: context);
+          inspect(responsePlants.first);
 
       }else if(currentOptionSelected==2){
          responseRecipe=await networkApi.getListRecipe(context: context);
+          inspect(responseRecipe.first);
 
       }else{
         responseFood= await networkApi.getListFoods(context: context);
+        inspect(responseFood.first);
       }
       setState(() {
         
       });
-      inspect(response.first);
+      
     }catch(e){
       // inspect(e);
     }
@@ -92,6 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             DropdownButtonFormField(
+              value: currentOptionSelected,
               items: options.map((e){
                 return DropdownMenuItem(
                   value: e.option,
@@ -109,7 +114,9 @@ class _MyHomePageState extends State<MyHomePage> {
             child: currentOptionSelected==0?
             FoodWidget(foods: responseFood):
             currentOptionSelected==2?
-            ReceiptWidget(recipes: responseRecipe)
+            ReceiptWidget(recipes: responseRecipe):
+            currentOptionSelected==1?
+            PlantWidget(plants: responsePlants)
             :Container()
             ,
           )

@@ -47,19 +47,19 @@ class NetworkApi {
         // inspect(element.findElements('AVAILABILITY').first);
         plants.add(
           PlantModel(
-            zone: int.tryParse(element.findElements('ZONE').first.text)??0,
-            availability: element.findElements('AVAILABILITY').first.text.toString(),
-            botanical: element.findElements('BOTANICAL').first.text,
-            light: element.findElements('LIGHT').first.text,
-            commom: element.findElements('COMMON').first.text,
-            price:  element.findElements('PRICE').first.text,
-            url: element.findElements('URL').first.text,
+            availability: element.findElements('AVAILABILITY').first.text.trimLeft().trimRight(),
+            zone: int.tryParse(element.findElements('ZONE').first.text.trimLeft().trimRight())??0,
+            botanical: element.findElements('BOTANICAL').first.text.trimLeft().trimRight(),
+            light: element.findElements('LIGHT').first.text.trimLeft().trimRight(),
+            commom: element.findElements('COMMON').first.text.trimLeft().trimRight(),
+            price:  element.findElements('PRICE').first.text.trimLeft().trimRight(),
+            url: element.findElements('URL').first.text.trimLeft().trimRight(),
           )
         );
       }
       
     }catch(e){
-      // inspect(e);
+       inspect(e);
       plants=[];
     }
 
@@ -100,17 +100,17 @@ class NetworkApi {
               )
             );
         }
-        Iterable<xml.XmlElement> ingredientssDyn=element.findElements('ingredientes');
+        xml.XmlElement ingredientssMainDyn=element.findElements('ingredientes').first;
+        Iterable<xml.XmlElement> ingredientssDyn=ingredientssMainDyn.findElements('ingrediente');
         
          for (final ingXml in ingredientssDyn.toList()) {
-            inspect(ingXml.attributes);
-              xml.XmlAttribute name= ingXml.findElements('ingrediente').first.attributes.firstWhere(
+              xml.XmlAttribute name= ingXml.attributes.firstWhere(
               (p0){
                   return p0.name.toString()=='nombre';
                 },
                 orElse: () => xml.XmlAttribute(xml.XmlName('nombre'), 'error'),
               );
-              xml.XmlAttribute cantidad= ingXml.findElements('ingrediente').first.attributes.firstWhere(
+              xml.XmlAttribute cantidad= ingXml.attributes.firstWhere(
               (p0){
                   return p0.name.toString()=='cantidad';
                 },
