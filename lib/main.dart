@@ -2,7 +2,12 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:read_three_xml/api/network.dart';
+import 'package:read_three_xml/models/food_model.dart';
 import 'package:read_three_xml/models/option_model.dart';
+import 'package:read_three_xml/models/plant_model.dart';
+import 'package:read_three_xml/models/recipe_model.dart';
+import 'package:read_three_xml/widgets/food_widget.dart';
+import 'package:read_three_xml/widgets/receipt_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -41,20 +46,27 @@ class _MyHomePageState extends State<MyHomePage> {
     const OptionModel(name: 'receta', option: 2),
   ];
   int currentOptionSelected=2;
+   List<dynamic>response=[];
+   List<FoodModel>responseFood=[];
+   List<RecipeModel>responseRecipe=[];
+   List<PlantModel>responsePlants=[];
   final NetworkApi networkApi=NetworkApi();
 
   getInitData()async{
-    List<dynamic>response=[];
+   
     try{
       if(currentOptionSelected==1){
-         response=await networkApi.getListPlants(context: context);
+         responsePlants=await networkApi.getListPlants(context: context);
 
       }else if(currentOptionSelected==2){
-         response=await networkApi.getListRecipe(context: context);
+         responseRecipe=await networkApi.getListRecipe(context: context);
 
       }else{
-        response= await networkApi.getListFoods(context: context);
+        responseFood= await networkApi.getListFoods(context: context);
       }
+      setState(() {
+        
+      });
       inspect(response.first);
     }catch(e){
       // inspect(e);
@@ -88,11 +100,21 @@ class _MyHomePageState extends State<MyHomePage> {
               }).toList(), 
               onChanged: (int? option){
                 if(option!=null){
-
+                    currentOptionSelected=option;
+                    getInitData();
                 }
               }
             ),
+             Expanded(  
+            child: currentOptionSelected==0?
+            FoodWidget(foods: responseFood):
+            currentOptionSelected==2?
+            ReceiptWidget(recipes: responseRecipe)
+            :Container()
+            ,
+          )
           ],
+         
         ),
       ),
     
