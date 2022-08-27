@@ -1,0 +1,37 @@
+<breakfast_menu>
+    <food>
+        <name>Belgian Waffles</name>
+        <price>$5.95</price>
+        <description>Two of our famous Belgian Waffles with plenty of real maple syrup</description>
+        <calories>650</calories>
+        <url>https://storcpdkenticomedia.blob.core.windows.net/media/recipemanagementsystem/media/recipe-media-files/recipes/retail/x17/2020_belgian-style-waffles_16700_760x580.jpg?ext=.jpg</url>
+    </food>
+    <food>
+        <name>Strawberry Belgian Waffles</name>
+        <price>$7.95</price>
+        <description>Light Belgian waffles covered with strawberries and whipped cream</description>
+        <calories>900</calories>
+        <url>https://i0.wp.com/cupcakes-and-sarcasm.com/wp-content/uploads/2018/10/0CBB3C05-E91F-457F-B3D4-877FA6E04113.jpeg?fit=3710%2C3021&ssl=1</url>
+    </food>
+    <food>
+        <name>Berry-Berry Belgian Waffles</name>
+        <price>$8.95</price>
+        <description>Light Belgian waffles covered with an assortment of fresh berries and whipped cream</description>
+        <calories>900</calories>
+        <url>https://irepo.primecp.com/2015/06/223306/Belgian-Berry-Waffles_ExtraLarge1000_ID-1029285.jpg?v=1029285</url>
+    </food>
+    <food>
+        <name>French Toast</name>
+        <price>$4.50</price>
+        <description>Thick slices made from our homemade sourdough bread</description>
+        <calories>600</calories>
+        <url>https://d1e3z2jco40k3v.cloudfront.net/-/media/project/oneweb/mccormick-us/mccormick/recipe-images/quick_and_easy_french_toast_new_800x800.webp?rev=472bd38acf3f4e80b329915ba486cae1&vd=20220809T202043Z&hash=34381AE86E477B12B64277F710290F21</url>
+    </food>
+    <food>
+        <name>Homestyle Breakfast</name>
+        <price>$6.95</price>
+        <description>Two eggs, bacon or sausage, toast, and our ever-popular hash browns</description>
+        <calories>950</calories>
+        <url>https://previews.123rf.com/images/rez_art/rez_art1903/rez_art190300009/118110986-steak-and-eggs-breakfast-with-toast-and-homestyle-potatoes-on-wooden-table.jpg</url>
+    </food>
+</breakfast_menu>
